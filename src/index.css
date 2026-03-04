@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'HarryP';
+  src: url('/harry_p/HARRYP__.TTF') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@layer base {
+  body {
+    @apply bg-transparent text-white;
+    /* Let MistBackground handle base color */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+}
+
+@layer utilities {
+  .text-glow {
+    text-shadow: 0 0 10px rgba(100, 108, 255, 0.8), 0 0 20px rgba(100, 108, 255, 0.4);
+  }
+
+  .box-glow {
+    box-shadow: 0 0 15px rgba(100, 108, 255, 0.5);
+  }
+}
+
+.text-magic-glow {
+  font-family: 'HarryP', serif;
+  text-shadow: 0 0 20px rgba(100, 150, 255, 0.6), 0 0 40px rgba(100, 150, 255, 0.4);
+}
