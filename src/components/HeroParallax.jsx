@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useRef, useEffect } from 'react';
+import React, { useLayoutEffect, useRef, useEffect, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -12,6 +12,27 @@ const HeroParallax = () => {
     const castleRef = useRef(null);
     const cloudRef = useRef(null);
     const boxRef = useRef(null);
+    const timerRef = useRef(null);
+
+    const calculateTimeLeft = () => {
+        const difference = +new Date('2026-03-13T00:00:00') - +new Date();
+        let timeLeft = {};
+        if (difference > 0) {
+            timeLeft = {
+                days: Math.floor(difference / (1000 * 60 * 60 * 24)).toString().padStart(2, '0'),
+                hours: Math.floor((difference / (1000 * 60 * 60)) % 24).toString().padStart(2, '0'),
+                mins: Math.floor((difference / 1000 / 60) % 60).toString().padStart(2, '0')
+            };
+        }
+        return timeLeft;
+    };
+    const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setTimeLeft(calculateTimeLeft());
+        }, 1000);
+        return () => clearTimeout(timer);
+    });
 
     useLayoutEffect(() => {
         let ctx = gsap.context(() => {
@@ -28,8 +49,8 @@ const HeroParallax = () => {
             // 1. Sky moves very slightly
             tl.to(skyRef.current, { yPercent: -10, ease: "none" }, 0);
 
-            // 2. Text and Box fade out as user scrolls, perfectly synchronized
-            tl.to([textRef.current, boxRef.current], { yPercent: -30, opacity: 0, ease: "power2.out", duration: 0.8 }, 0);
+            // 2. Text, Box, and Timer fade out as user scrolls, perfectly synchronized
+            tl.to([textRef.current, boxRef.current, timerRef.current], { yPercent: -30, opacity: 0, ease: "power2.out", duration: 0.8 }, 0);
 
             // 3. Castle and Cloud rise, accelerating at the end
             tl.to([castleRef.current, cloudRef.current], { y: "-100vh", ease: "power2.in" }, 0);
@@ -87,6 +108,36 @@ const HeroParallax = () => {
                 alt="Asset Box"
                 className="absolute bottom-0 left-0 z-10 w-1/2 h-auto md:w-auto md:h-[28rem] pointer-events-none"
             />
+
+            {/* Layer: Dynamic Gear Timer - Scaled up, perfectly aligned, centered on mobile */}
+            <div
+                ref={timerRef}
+                className="absolute z-[60] w-[90vw] max-w-[26rem] left-1/2 -translate-x-1/2 top-[55vh] 
+                           md:top-auto md:left-auto md:bottom-16 md:right-12 md:translate-x-0 md:w-[50rem] pointer-events-none"
+            >
+                <img src="/gears-timer.png" alt="Gear Timer Frame" className="w-full h-auto drop-shadow-2xl" />
+
+                {/* Numbers Overlay (Inside the circles) */}
+                {/* Increased font to text-4xl/6xl and added font-extrabold to fill the parchment space */}
+                <div className="absolute top-[5%] left-0 w-full h-[85%] flex items-center justify-between px-[3%]">
+                    <div className="w-1/3 flex justify-center items-center">
+                        <span className="text-[#1A1A1A] font-serif text-5xl md:text-7xl font-extrabold tracking-tighter">{timeLeft.days || '00'}</span>
+                    </div>
+                    <div className="w-1/3 flex justify-center items-center">
+                        <span className="text-[#1A1A1A] font-serif text-5xl md:text-7xl font-extrabold tracking-tighter">{timeLeft.hours || '00'}</span>
+                    </div>
+                    <div className="w-1/3 flex justify-center items-center">
+                        <span className="text-[#1A1A1A] font-serif text-5xl md:text-7xl font-extrabold tracking-tighter">{timeLeft.mins || '00'}</span>
+                    </div>
+                </div>
+                {/* Labels Overlay (Below the circles) */}
+                {/* Changed 'Mins' to 'MINUTES', adjusted spacing and text sizes to fit the longer word */}
+                <div className="absolute -bottom-6 md:-bottom-10 left-0 w-full flex justify-between px-[2%] text-[#D4AF37] font-serif tracking-widest text-sm md:text-lg drop-shadow-md">
+                    <div className="w-1/3 text-center uppercase">Days</div>
+                    <div className="w-1/3 text-center uppercase">Hours</div>
+                    <div className="w-1/3 text-center uppercase">Minutes</div>
+                </div>
+            </div>
 
             {/* LAYER 3: The Castle - Alpha Mask blurs the bottom into transparency */}
             <img
