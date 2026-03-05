@@ -1,9 +1,13 @@
 import React from 'react';
 import HeroParallax from './components/HeroParallax';
+import Navbar from './components/Navbar';
 
 const App = () => {
   return (
     <main className="relative w-full min-h-screen bg-black text-white">
+      {/* Fixed Navigation */}
+      <Navbar />
+
       {/* The Pinned Hero Section */}
       <HeroParallax />
 
