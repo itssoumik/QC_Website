@@ -27,6 +27,7 @@ const HeroParallax = () => {
         return timeLeft;
     };
     const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
+
     useEffect(() => {
         const timer = setTimeout(() => {
             setTimeLeft(calculateTimeLeft());
@@ -36,6 +37,7 @@ const HeroParallax = () => {
 
     useLayoutEffect(() => {
         let ctx = gsap.context(() => {
+
             const tl = gsap.timeline({
                 scrollTrigger: {
                     trigger: containerRef.current,
@@ -46,25 +48,31 @@ const HeroParallax = () => {
                 },
             });
 
-            // 1. Sky moves very slightly
-            tl.to(skyRef.current, { yPercent: -10, ease: "none" }, 0);
+            tl.to(skyRef.current, { yPercent: -10, ease: "none", duration: 1 }, 0);
+            tl.to([textRef.current, boxRef.current, timerRef.current], { yPercent: -30, opacity: 0, ease: "power2.out", duration: 0.6 }, 0);
+            tl.to([castleRef.current, cloudRef.current], { y: "-100vh", ease: "power2.in", duration: 1 }, 0);
 
-            // 2. Text, Box, and Timer fade out as user scrolls, perfectly synchronized
-            tl.to([textRef.current, boxRef.current, timerRef.current], { yPercent: -30, opacity: 0, ease: "power2.out", duration: 0.8 }, 0);
-
-            // 3. Castle and Cloud rise, accelerating at the end
-            tl.to([castleRef.current, cloudRef.current], { y: "-100vh", ease: "power2.in" }, 0);
+            gsap.fromTo(skyRef.current,
+                { opacity: 1 },
+                {
+                    opacity: 0,
+                    ease: "none",
+                    scrollTrigger: {
+                        trigger: containerRef.current,
+                        start: () => tl.scrollTrigger.end,
+                        end: () => tl.scrollTrigger.end + window.innerHeight,
+                        scrub: 0.5,
+                    }
+                }
+            );
 
         }, containerRef);
 
         return () => ctx.revert();
     }, []);
 
-    // Mouse Parallax Sensor for the Title Text
     useEffect(() => {
         const handleMouseMove = (e) => {
-            // Calculate mouse offset from center of screen (-0.5 to 0.5)
-            // Multiply by 40 to set the maximum pixel distance the text will travel
             const xPos = (e.clientX / window.innerWidth - 0.5) * 40;
             const yPos = (e.clientY / window.innerHeight - 0.5) * 40;
             gsap.to(titleTextRef.current, {
@@ -79,18 +87,23 @@ const HeroParallax = () => {
     }, []);
 
     return (
-        <div ref={containerRef} className="relative w-full h-screen z-20">
-            {/* Layer 1: Sky - Height increased to 250vh so it extends fully behind the resting cloud */}
+        <div ref={containerRef} className="relative w-full h-screen z-20 bg-black">
+
+            {/* Sky */}
             <div className="absolute inset-0 z-0 pointer-events-none">
                 <img
                     ref={skyRef}
                     src="/infinite-sky.png"
                     alt="Sky Background"
-                    className="absolute top-0 left-0 w-full h-[250vh] object-cover"
+                    className="absolute top-0 left-0 w-full h-[120vh] object-cover"
+                    style={{
+                        maskImage: 'linear-gradient(to bottom, black 60%, transparent 100%)',
+                        WebkitMaskImage: 'linear-gradient(to bottom, black 60%, transparent 100%)'
+                    }}
                 />
             </div>
 
-            {/* LAYER 2: The Text - Resized, shifted up, and attached to mouse sensor */}
+            {/* Text */}
             <div ref={textRef} className="absolute inset-0 flex items-center justify-center z-16 px-4 pointer-events-none pb-[10vh] md:pb-[15vh]">
                 <h1
                     ref={titleTextRef}
@@ -100,8 +113,7 @@ const HeroParallax = () => {
                 </h1>
             </div>
 
-            {/* Layer: UI Box/Stone Slab (mobile: bottom-left, desktop: bottom-left) */}
-            {/* Layer: UI Box/Stone Slab (fixed transparency) */}
+            {/* Box */}
             <img
                 ref={boxRef}
                 src="/box2.png"
@@ -109,7 +121,7 @@ const HeroParallax = () => {
                 className="absolute bottom-0 left-0 z-10 w-1/2 h-auto md:w-auto md:h-[28rem] pointer-events-none"
             />
 
-            {/* Layer: Dynamic Gear Timer - Scaled up, perfectly aligned, centered on mobile */}
+            {/* Timer */}
             <div
                 ref={timerRef}
                 className="absolute z-[60] w-[90vw] max-w-[26rem] left-1/2 -translate-x-1/2 top-[55vh] 
@@ -117,8 +129,6 @@ const HeroParallax = () => {
             >
                 <img src="/gears-timer.png" alt="Gear Timer Frame" className="w-full h-auto drop-shadow-2xl" />
 
-                {/* Numbers Overlay (Inside the circles) */}
-                {/* Increased font to text-4xl/6xl and added font-extrabold to fill the parchment space */}
                 <div className="absolute top-[5%] left-0 w-full h-[85%] flex items-center justify-between px-[3%]">
                     <div className="w-1/3 flex justify-center items-center">
                         <span className="text-[#1A1A1A] font-serif text-5xl md:text-7xl font-extrabold tracking-tighter">{timeLeft.days || '00'}</span>
@@ -130,8 +140,7 @@ const HeroParallax = () => {
                         <span className="text-[#1A1A1A] font-serif text-5xl md:text-7xl font-extrabold tracking-tighter">{timeLeft.mins || '00'}</span>
                     </div>
                 </div>
-                {/* Labels Overlay (Below the circles) */}
-                {/* Changed 'Mins' to 'MINUTES', adjusted spacing and text sizes to fit the longer word */}
+
                 <div className="absolute -bottom-6 md:-bottom-10 left-0 w-full flex justify-between px-[2%] text-[#D4AF37] font-serif tracking-widest text-sm md:text-lg drop-shadow-md">
                     <div className="w-1/3 text-center uppercase">Days</div>
                     <div className="w-1/3 text-center uppercase">Hours</div>
@@ -139,7 +148,7 @@ const HeroParallax = () => {
                 </div>
             </div>
 
-            {/* LAYER 3: The Castle - Alpha Mask blurs the bottom into transparency */}
+            {/* Castle */}
             <img
                 ref={castleRef}
                 src="/castle.png"
@@ -148,11 +157,11 @@ const HeroParallax = () => {
                 alt="Quizzitch Castle"
             />
 
-            {/* LAYER 4: The Cloud - Centered over where the castle fades out */}
+            {/* Cloud */}
             <img
                 ref={cloudRef}
                 src="/meow3.jpg"
-                className="absolute top-[180vh] left-0 w-full h-[40vh] object-cover mix-blend-screen z-30 pointer-events-none opacity-90 contrast-150 brightness-100"
+                className="absolute top-[180vh] left-0 w-full h-[40vh] object-cover mix-blend-screen z-40 pointer-events-none opacity-90 contrast-150 brightness-100"
                 style={{ maskImage: 'linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)', WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)' }}
                 alt="Prominent Cloud"
             />

@@ -5,29 +5,25 @@ import About from './components/About';
 
 const App = () => {
   return (
+    // Removed the overflow-x-hidden class so 'sticky' works again!
     <main className="relative w-full min-h-screen bg-black text-white">
+
       {/* Fixed Navigation */}
       <Navbar />
 
-      {/* The Pinned Hero Section */}
+      {/* The Hero Section (Handles the Sky -> Black Transition) */}
       <HeroParallax />
 
-      {/* The Pensieve Memory Gallery */}
+      {/* The Pensieve Memory Gallery (Pitch Black Background) */}
       <About />
 
-      {/* The Infinite Sky Transition Section */}
-      <section
-        className="relative z-10 w-full min-h-[300vh] flex flex-col items-center pt-40"
-        style={{
-          backgroundImage: `url('/infinite-sky.png')`,
-          backgroundRepeat: 'repeat-y',
-          backgroundSize: '100% auto',
-          backgroundPosition: 'top center',
-          backgroundColor: '#070B14'
-        }}
-      >
-
+      {/* The Void*/}
+      <section className="relative z-10 w-full min-h-screen flex flex-col items-center justify-center bg-black pt-40">
+        <h2 className="text-[#D4AF37] opacity-20 text-4xl font-serif uppercase tracking-widest text-center">
+          MEOW MEOW MEOW
+        </h2>
       </section>
+
     </main>
   );
 };
