@@ -87,7 +87,7 @@ const HeroParallax = () => {
     }, []);
 
     return (
-        <div ref={containerRef} className="relative w-full h-screen z-20 bg-black">
+        <div ref={containerRef} id="home" className="relative w-full h-screen z-20 bg-black">
 
             {/* Sky */}
             <div className="absolute inset-0 z-0 pointer-events-none">
