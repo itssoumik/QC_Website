@@ -13,22 +13,19 @@ const Sponsors = () => {
     useLayoutEffect(() => {
         let ctx = gsap.context(() => {
 
-            // THE MASTER PIN: Locks the section and handles the sequence
             const tl = gsap.timeline({
                 scrollTrigger: {
                     trigger: sectionRef.current,
                     pin: true,
-                    start: "top top", // Locks exactly when it hits the top
-                    end: "+=150%",    // Extends the scroll distance for a smooth, heavy feel
-                    scrub: 1,         // Premium 1-second smoothing
+                    start: "top top",
+                    end: "+=150%",
+                    scrub: 1,
                 }
             });
 
-            // PHASE 1: The Entrance Pause (15% of the timeline)
             tl.to({}, { duration: 0.15 })
 
-            // PHASE 2: The Dueling Slide (70% of the timeline)
-            // Left Banner slides in from the far left
+            // Left banner
             tl.from(bannerLeftRef.current, {
                 xPercent: -150,
                 opacity: 0,
@@ -36,7 +33,7 @@ const Sponsors = () => {
                 duration: 0.7
             }, 0.15);
 
-            // Right Banner slides in from the far right simultaneously
+            // Right banner
             tl.from(bannerRightRef.current, {
                 xPercent: 150,
                 opacity: 0,
@@ -44,7 +41,6 @@ const Sponsors = () => {
                 duration: 0.7
             }, 0.15);
 
-            // PHASE 3: The Exit Pause (15% of the timeline)
             tl.to({}, { duration: 0.15 });
 
         }, sectionRef);
@@ -55,7 +51,6 @@ const Sponsors = () => {
     return (
         <section ref={sectionRef} id="sponsors" className="relative w-full h-screen bg-black overflow-hidden flex flex-col justify-center z-30">
 
-            {/* THE HEADER: Matches the 'Events' section perfectly */}
             <div ref={textRef} className="absolute top-[18vh] left-0 w-full z-10 pointer-events-none">
                 <h2
                     className="text-[#D4AF37] text-[15vw] md:text-[8rem] uppercase tracking-widest leading-none text-center"
@@ -68,12 +63,11 @@ const Sponsors = () => {
                 </h2>
             </div>
 
-            {/* THE BANNERS CONTAINER */}
-            <div className="flex h-full items-center pt-[18vh] md:pt-[22vh]">
-                <div className="flex flex-nowrap h-auto items-center px-[5vw] md:px-[15vw] gap-6 md:gap-20 w-full justify-center">
+            <div className="flex h-full items-center pt-[22vh] pb-[5vh] md:pt-[22vh] md:pb-0">
+                <div className="flex flex-col md:flex-row h-auto items-center px-[5vw] md:px-[15vw] gap-6 md:gap-20 w-full justify-center">
 
-                    {/* Banner 1 (Left - Gryffindor Style) */}
-                    <div ref={bannerLeftRef} className="relative w-[40vw] md:w-[26vw] shrink-0 transform-gpu will-change-transform">
+                    {/* Left banner */}
+                    <div ref={bannerLeftRef} className="relative w-[55vw] md:w-[26vw] shrink-0 transform-gpu will-change-transform">
                         <img
                             src="/sponsors/sponsor1.png"
                             alt="Title Patron"
@@ -81,8 +75,8 @@ const Sponsors = () => {
                         />
                     </div>
 
-                    {/* Banner 2 (Right - Slytherin Style) */}
-                    <div ref={bannerRightRef} className="relative w-[40vw] md:w-[26vw] shrink-0 transform-gpu will-change-transform">
+                    {/* Right banner */}
+                    <div ref={bannerRightRef} className="relative w-[55vw] md:w-[26vw] shrink-0 transform-gpu will-change-transform">
                         <img
                             src="/sponsors/sponsor2.png"
                             alt="Co-Patron"

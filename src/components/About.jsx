@@ -17,7 +17,7 @@ const About = () => {
 
     useLayoutEffect(() => {
         let ctx = gsap.context(() => {
-            // PARALLAX SCATTER: Moves each image up over the pinned text
+            // Parallax drift for each image
             imagesRef.current.forEach((img, i) => {
                 const speedMultiplier = 1 + (i % 3) * 0.3;
 
@@ -36,22 +36,22 @@ const About = () => {
         return () => ctx.revert();
     }, []);
 
+    // Image layout — responsive positions and widths
     const layoutConfig = [
-        { left: "5%", top: "110vh", width: "w-[60vw] md:w-[25vw]" },
-        { left: "65%", top: "140vh", width: "w-[55vw] md:w-[28vw]" },
-        { left: "20%", top: "200vh", width: "w-[65vw] md:w-[26vw]" },
-        { left: "60%", top: "260vh", width: "w-[60vw] md:w-[27vw]" },
-        { left: "10%", top: "320vh", width: "w-[55vw] md:w-[25vw]" },
-        { left: "55%", top: "370vh", width: "w-[65vw] md:w-[28vw]" },
+        { top: "110vh", classes: "left-[5%] w-[60vw] md:w-[25vw]" },
+        { top: "140vh", classes: "right-[5%] md:right-auto md:left-[65%] w-[55vw] md:w-[28vw]" },
+        { top: "200vh", classes: "left-[5%] md:left-[20%] w-[65vw] md:w-[26vw]" },
+        { top: "260vh", classes: "right-[5%] md:right-auto md:left-[60%] w-[60vw] md:w-[27vw]" },
+        { top: "320vh", classes: "left-[5%] md:left-[10%] w-[55vw] md:w-[25vw]" },
+        { top: "370vh", classes: "right-[5%] md:right-auto md:left-[55%] w-[60vw] md:w-[28vw]" },
     ];
 
     return (
+
         <section ref={sectionRef} id="about" className="relative w-full h-[400vh] bg-black z-30">
 
-            {/* PART 1: The Text Block */}
+            {/* Sticky text */}
             <div className="sticky top-0 left-0 w-full h-screen flex flex-col items-center justify-center z-10 px-6 pointer-events-none transform-gpu will-change-transform">
-
-                {/* FIX: Forced the HarryP font directly via inline style */}
                 <h2
                     className="text-[#D4AF37] text-[15vw] md:text-[10rem] uppercase tracking-widest leading-none"
                     style={{
@@ -70,7 +70,7 @@ const About = () => {
                 </p>
             </div>
 
-            {/* PART 2: The Scattered Image Gallery */}
+            {/* Scattered images */}
             <div className="absolute top-0 left-0 w-full h-full z-20 pointer-events-none">
                 {layoutConfig.map((config, i) => (
                     <img
@@ -78,9 +78,9 @@ const About = () => {
                         ref={addToRefs}
                         src={`/memories/image${i + 1}.png`}
                         alt={`Memory ${i + 1}`}
-                        className={`absolute object-contain drop-shadow-[0_20px_30px_rgba(0,0,0,0.8)] ${config.width}`}
+
+                        className={`absolute object-contain drop-shadow-[0_20px_30px_rgba(0,0,0,0.8)] ${config.classes}`}
                         style={{
-                            left: config.left,
                             top: config.top,
                         }}
                     />

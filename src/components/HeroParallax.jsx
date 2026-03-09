@@ -104,15 +104,15 @@ const HeroParallax = () => {
             </div>
 
             {/* Text */}
-            <div ref={textRef} className="absolute inset-0 flex items-center justify-center z-16 px-4 pointer-events-none pb-[10vh] md:pb-[15vh]">
+            <div ref={textRef} className="absolute inset-0 flex items-center justify-center z-16 px-4 pointer-events-none pb-[35vh] md:pb-[15vh]">
+
                 <h1
                     ref={titleTextRef}
-                    className="text-[15vw] md:text-[12rem] leading-none text-white text-magic-glow uppercase text-center"
+                    className="text-[22vw] md:text-[12rem] leading-none text-white text-magic-glow uppercase text-center"
                 >
                     Quizzitch Cup
                 </h1>
             </div>
-
             {/* Box */}
             <img
                 ref={boxRef}
