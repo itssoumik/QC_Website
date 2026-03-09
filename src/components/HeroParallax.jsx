@@ -118,6 +118,7 @@ const HeroParallax = () => {
                 ref={boxRef}
                 src="/box2.webp"
                 alt="Asset Box"
+                fetchpriority="high"
                 className="absolute bottom-0 left-0 z-10 w-1/2 h-auto md:w-auto md:h-[28rem] pointer-events-none"
             />
 
@@ -127,7 +128,7 @@ const HeroParallax = () => {
                 className="absolute z-[60] w-[90vw] max-w-[26rem] left-1/2 -translate-x-1/2 top-[55vh] 
                            md:top-auto md:left-auto md:bottom-16 md:right-12 md:translate-x-0 md:w-[50rem] pointer-events-none"
             >
-                <img src="/gears-timer.webp" alt="Gear Timer Frame" className="w-full h-auto drop-shadow-2xl" />
+                <img src="/gears-timer.webp" alt="Gear Timer Frame" fetchpriority="high" className="w-full h-auto drop-shadow-2xl" />
 
                 <div className="absolute top-[5%] left-0 w-full h-[85%] flex items-center justify-between px-[3%]">
                     <div className="w-1/3 flex justify-center items-center">
@@ -152,6 +153,7 @@ const HeroParallax = () => {
             <img
                 ref={castleRef}
                 src="/castle.webp"
+                fetchpriority="high"
                 className="absolute top-[100vh] left-0 w-full h-[100vh] object-contain object-bottom z-20 pointer-events-none"
                 style={{ maskImage: 'linear-gradient(to bottom, black 80%, transparent 100%)', WebkitMaskImage: 'linear-gradient(to bottom, black 80%, transparent 100%)' }}
                 alt="Quizzitch Castle"
@@ -161,6 +163,7 @@ const HeroParallax = () => {
             <img
                 ref={cloudRef}
                 src="/meow3.jpg"
+                fetchpriority="high"
                 className="absolute top-[180vh] left-0 w-full h-[40vh] object-cover mix-blend-screen z-40 pointer-events-none opacity-90 contrast-150 brightness-100"
                 style={{ maskImage: 'linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)', WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%)' }}
                 alt="Prominent Cloud"
