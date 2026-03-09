@@ -16,7 +16,7 @@ const Navbar = () => {
 
 
                 <div className="flex-shrink-0 flex justify-center items-center relative z-50">
-                    <img src="/logo.png" alt="Quizzitch Cup Logo" className="w-40 h-auto drop-shadow-[0_0_20px_rgba(212,175,55,0.6)] cursor-pointer hover:scale-105 transition-transform duration-500" />
+                    <img src="/logo.webp" alt="Quizzitch Cup Logo" className="w-40 h-auto drop-shadow-[0_0_20px_rgba(212,175,55,0.6)] cursor-pointer hover:scale-105 transition-transform duration-500" />
                 </div>
 
 
@@ -29,7 +29,7 @@ const Navbar = () => {
             {/* Mobile */}
             <div className="md:hidden relative p-4 flex justify-between items-center">
                 <img
-                    src="/logo.png"
+                    src="/logo.webp"
                     alt="Menu Toggle"
                     className="w-24 h-auto cursor-pointer relative z-50 drop-shadow-[0_0_10px_rgba(212,175,55,0.4)]"
                     onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}

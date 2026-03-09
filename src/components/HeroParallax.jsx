@@ -93,7 +93,7 @@ const HeroParallax = () => {
             <div className="absolute inset-0 z-0 pointer-events-none">
                 <img
                     ref={skyRef}
-                    src="/infinite-sky.png"
+                    src="/infinite-sky.webp"
                     alt="Sky Background"
                     className="absolute top-0 left-0 w-full h-[120vh] object-cover"
                     style={{
@@ -116,7 +116,7 @@ const HeroParallax = () => {
             {/* Box */}
             <img
                 ref={boxRef}
-                src="/box2.png"
+                src="/box2.webp"
                 alt="Asset Box"
                 className="absolute bottom-0 left-0 z-10 w-1/2 h-auto md:w-auto md:h-[28rem] pointer-events-none"
             />
@@ -127,7 +127,7 @@ const HeroParallax = () => {
                 className="absolute z-[60] w-[90vw] max-w-[26rem] left-1/2 -translate-x-1/2 top-[55vh] 
                            md:top-auto md:left-auto md:bottom-16 md:right-12 md:translate-x-0 md:w-[50rem] pointer-events-none"
             >
-                <img src="/gears-timer.png" alt="Gear Timer Frame" className="w-full h-auto drop-shadow-2xl" />
+                <img src="/gears-timer.webp" alt="Gear Timer Frame" className="w-full h-auto drop-shadow-2xl" />
 
                 <div className="absolute top-[5%] left-0 w-full h-[85%] flex items-center justify-between px-[3%]">
                     <div className="w-1/3 flex justify-center items-center">
@@ -151,7 +151,7 @@ const HeroParallax = () => {
             {/* Castle */}
             <img
                 ref={castleRef}
-                src="/castle.png"
+                src="/castle.webp"
                 className="absolute top-[100vh] left-0 w-full h-[100vh] object-contain object-bottom z-20 pointer-events-none"
                 style={{ maskImage: 'linear-gradient(to bottom, black 80%, transparent 100%)', WebkitMaskImage: 'linear-gradient(to bottom, black 80%, transparent 100%)' }}
                 alt="Quizzitch Castle"

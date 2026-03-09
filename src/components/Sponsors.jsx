@@ -69,7 +69,7 @@ const Sponsors = () => {
                     {/* Left banner */}
                     <div ref={bannerLeftRef} className="relative w-[55vw] md:w-[26vw] shrink-0 transform-gpu will-change-transform">
                         <img
-                            src="/sponsors/sponsor1.png"
+                            src="/sponsors/sponsor1.webp"
                             alt="Title Patron"
                             className="w-full h-auto object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.8)]"
                         />
@@ -78,7 +78,7 @@ const Sponsors = () => {
                     {/* Right banner */}
                     <div ref={bannerRightRef} className="relative w-[55vw] md:w-[26vw] shrink-0 transform-gpu will-change-transform">
                         <img
-                            src="/sponsors/sponsor2.png"
+                            src="/sponsors/sponsor2.webp"
                             alt="Co-Patron"
                             className="w-full h-auto object-contain drop-shadow-[0_20px_40px_rgba(0,0,0,0.8)]"
                         />

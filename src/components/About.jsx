@@ -76,7 +76,7 @@ const About = () => {
                     <img
                         key={i}
                         ref={addToRefs}
-                        src={`/memories/image${i + 1}.png`}
+                        src={`/memories/image${i + 1}.webp`}
                         alt={`Memory ${i + 1}`}
 
                         className={`absolute object-contain drop-shadow-[0_20px_30px_rgba(0,0,0,0.8)] ${config.classes}`}
