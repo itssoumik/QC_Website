@@ -9,13 +9,13 @@ const Events = () => {
     const sliderRef = useRef(null);
 
     const eventsList = [
-        { id: 1, name: "Wizarding World Auction", img: '/events/event1.webp', link: "https://docs.google.com/forms/d/e/1FAIpQLSfn_1seeUd4iip-UwusDtI65GEhMNJPXFqjMy8dr8oNgzs7hQ/viewform?usp=publish-editor" },
-        { id: 2, name: "Wizarding World Quiz", img: '/events/event1.webp', link: "https://docs.google.com/forms/d/e/1FAIpQLScOJsVsU7u6AXGZi69gaZPTxTSwKShYzuE-yfig9XQ1rOERaQ/viewform?usp=header" },
-        { id: 3, name: "Geopolitical Quiz", img: '/events/event1.webp', link: "https://docs.google.com/forms/d/e/1FAIpQLSfzQHTPqr8z3hczAIMTdGcGIph8HA3IDSEp5oOYdFFWFVQWoA/viewform?usp=header" },
-        { id: 4, name: "Cipher Quest Quiz", img: '/events/event1.webp', link: "https://docs.google.com/forms/d/e/1FAIpQLSca4SEbxfD--WZtUvgoBz6g-8O6pI4XpQVrQkxBn58bIueuFA/viewform?usp=header" },
-        { id: 5, name: "Qmanji", img: '/events/event1.webp', link: "https://docs.google.com/forms/d/1IJBz-nW6bS1-gnlRCD-9DzTq1D0mWmU_N53mEFxNW-U/edit" },
-        { id: 6, name: "India Quiz", img: '/events/event1.webp', link: "https://docs.google.com/forms/d/e/1FAIpQLSdjT7cpT_ex5Wo7T9Akx1mw_yET6xFdDxUkHTxSENDH_lM8zg/viewform?usp=header" },
-        { id: 7, name: "Sports Quiz", img: '/events/event1.webp', link: "https://docs.google.com/forms/d/e/1FAIpQLSd-Ty3zfKoGDH2wphPAlE6XyaTnFtAW9bKEDJVmkAamzsofCg/viewform?usp=header" },
+        //{ id: 1, name: "Wizarding World Auction", img: '/events/event1.webp', link: "https://docs.google.com/forms/d/e/1FAIpQLSfn_1seeUd4iip-UwusDtI65GEhMNJPXFqjMy8dr8oNgzs7hQ/viewform?usp=publish-editor" },
+        { id: 2, name: "Wizarding World Quiz", img: '/events/fandom.webp', link: "https://docs.google.com/forms/d/e/1FAIpQLScOJsVsU7u6AXGZi69gaZPTxTSwKShYzuE-yfig9XQ1rOERaQ/viewform?usp=header" },
+        //{ id: 3, name: "Geopolitical Quiz", img: '/events/event1.webp', link: "https://docs.google.com/forms/d/e/1FAIpQLSfzQHTPqr8z3hczAIMTdGcGIph8HA3IDSEp5oOYdFFWFVQWoA/viewform?usp=header" },
+        { id: 4, name: "Cipher Quest Quiz", img: '/events/nsfw.webp', link: "https://docs.google.com/forms/d/e/1FAIpQLSca4SEbxfD--WZtUvgoBz6g-8O6pI4XpQVrQkxBn58bIueuFA/viewform?usp=header" },
+        //{ id: 5, name: "Qmanji", img: '/events/event1.webp', link: "https://docs.google.com/forms/d/1IJBz-nW6bS1-gnlRCD-9DzTq1D0mWmU_N53mEFxNW-U/edit" },
+        { id: 6, name: "India Quiz", img: '/events/india.webp', link: "https://docs.google.com/forms/d/e/1FAIpQLSdjT7cpT_ex5Wo7T9Akx1mw_yET6xFdDxUkHTxSENDH_lM8zg/viewform?usp=header" },
+        { id: 7, name: "Sports Quiz", img: '/events/sports.webp', link: "https://docs.google.com/forms/d/e/1FAIpQLSd-Ty3zfKoGDH2wphPAlE6XyaTnFtAW9bKEDJVmkAamzsofCg/viewform?usp=header" },
     ];
 
     useLayoutEffect(() => {
@@ -52,7 +52,7 @@ const Events = () => {
                 </h2>
             </div>
 
-            <div className="flex h-full items-center mt-[15vh]">
+            <div className="flex h-full items-center mt-[20vh]">
                 <div ref={sliderRef} className="flex flex-nowrap h-full items-center px-[17.5vw] md:px-[37vw] gap-10 md:gap-24 w-max">
 
                     {eventsList.map((eventItem) => (
