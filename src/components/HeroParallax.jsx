@@ -15,7 +15,7 @@ const HeroParallax = () => {
     const timerRef = useRef(null);
 
     const calculateTimeLeft = () => {
-        const difference = +new Date('2026-03-13T00:00:00') - +new Date();
+        const difference = +new Date('2026-03-13T18:00:00') - +new Date();
         let timeLeft = {};
         if (difference > 0) {
             timeLeft = {

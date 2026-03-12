@@ -66,7 +66,7 @@ const About = () => {
                     className="text-gray-200 text-base md:text-2xl font-serif max-w-3xl text-center mt-6 md:mt-10"
                     style={{ textShadow: "0px 5px 10px rgba(0,0,0,0.8)" }}
                 >
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.
+                    For fifteen glorious years, QuizInc's crown jewel, The Quizzitch Cup, has reigned supreme as the ultimate intellectual fest. It is an adrenaline fueled battlefield where raw strategy meets unrelenting wit. Featuring agonizing buzzer rounds, dramatic high stakes finales, and a spectacular lineup of exciting non quiz events, this magnificent arena remains the definitive proving ground for champions seeking absolute glory.
                 </p>
             </div>
 
